@@ -2,26 +2,26 @@ import { useState } from "react";
 
 interface TodoItemProps {
   id: string;
-  title: string;
+  task: string;
   completed: boolean;
   toggleTodo: (id: string, completed: boolean) => void;
   deleteTodo: (id: string) => void;
-  editTodo: (id: string, newTitle: string) => void;
+  editTodo: (id: string, newTask: string) => void;
 }
 
 export function TodoItem({
   id,
   completed,
-  title,
+  task,
   toggleTodo,
   deleteTodo,
   editTodo
 }: TodoItemProps) {
   const [editable, setEditable] = useState(false);
-  const[newTitle, setNewTitle] = useState(title);
+  const[newTask, setNewTask] = useState(task);
 
   function handleSaveEdit() {
-    editTodo(id, newTitle);
+    editTodo(id, newTask);
     setEditable(false);
   }
 
@@ -35,12 +35,12 @@ export function TodoItem({
               checked={completed}
               onChange={e => toggleTodo(id, e.target.checked)}
             />
-            {title}
+            {task}
           </label>
         ) : (
           <input type="text"
-            value={newTitle}
-            onChange={e => setNewTitle(e.target.value)}
+            value={newTask}
+            onChange={e => setNewTask(e.target.value)}
           />
         )}
       </div>

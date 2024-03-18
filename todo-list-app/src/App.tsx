@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import { NewTodoForm } from './NewToDoForm';
 import { ToDoList } from './ToDoList';
 
-interface Todo {
-  id: string;
-  title: string;
-  completed: boolean;
-}
+// interface Todo {
+//   id: string;
+//   title: string;
+//   completed: boolean;
+// }
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>(() => {
@@ -20,13 +20,13 @@ function App() {
     localStorage.setItem("ITEMS", JSON.stringify(todos));
   }, [todos]);
 
-  function addTodo(title: string) {
+  function addTodo(task: string) {
     setTodos(currentTodos => {
       return [
         ...currentTodos,
         {
           id: crypto.randomUUID(),
-          title,
+          task,
           completed: false
         },
       ];
@@ -51,11 +51,11 @@ function App() {
     });
   }
 
-  function editTodo(id: string, newTitle: string) {
+  function editTodo(id: string, newTask: string) {
     setTodos(currentTodos => {
       return currentTodos.map(todo => {
         if (todo.id === id) {
-          return { ...todo, title: newTitle };
+          return { ...todo, task: newTask };
         }
 
         return todo;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 interface NewTodoFromProps {
-  onSubmit: (title: string) => void;
+  onSubmit: (task: string) => void;
 }
 
 export function NewTodoForm({ onSubmit }: NewTodoFromProps) {
